@@ -1,0 +1,14 @@
+module HelloWorldAQLModule; 
+-- TODO: Add AQL content here 
+
+-- 宣告一本字典
+create dictionary AmountDict
+from file 'dictionary/Amount.dict'
+with language as 'en';
+
+create view AmountWords as 
+extract dictionary AmountDict
+    on R.text as match
+from Document R;
+
+output view AmountWords;
